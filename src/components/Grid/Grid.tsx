@@ -24,11 +24,11 @@ interface GridProps<TItem extends GridItemData> {
   filter: GridFilter<TItem>;
 }
 
-function Grid<TItem extends GridItemData> ({
+const Grid = <TItem extends GridItemData> ({
   columns,
   data,
   filter,
- }: GridProps<TItem>): ReactElement {
+ }: GridProps<TItem>): ReactElement => {
 
   const [filterText, setFilterText] = useState<string>();
   const handlerInputFilterText = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -38,7 +38,7 @@ function Grid<TItem extends GridItemData> ({
   const [sortColumnId, setSortColumnId] = useState<ColumnId | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(SortDirection.ASC);
 
-  const setOrder = useCallback((newSortColumnId: ColumnId | null): void => {
+  const setSort= useCallback((newSortColumnId: ColumnId | null): void => {
     const getSortDirection = (): SortDirection => {
       if (sortColumnId === newSortColumnId) {
         return sortDirection === SortDirection.ASC
@@ -93,48 +93,48 @@ function Grid<TItem extends GridItemData> ({
       </div>
       <table className="table table-striped">
         <thead>
-        <tr>
-          {
-            columns.map(({ id, title }) => (
-              <th
-                key={id}
-                className="cursor-pointer"
-                onClick={() => {
-                  setOrder(id);
-                }}
-              >
-                {title}
-                {
-                  sortColumnId === id &&
-                  <span className="text-primary">
-                          {
-                            sortDirection
-                              ? ' ↑'
-                              : ' ↓'
-                          }
-                        </span>
-                }
-              </th>
-            ))
-          }
-        </tr>
+          <tr>
+            {
+              columns.map(({ id, title }) => (
+                <th
+                  key={id}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setSort(id);
+                  }}
+                >
+                  {title}
+                  {
+                    sortColumnId === id &&
+                    <span className="text-primary">
+                      {
+                        sortDirection
+                          ? ' ↑'
+                          : ' ↓'
+                      }
+                    </span>
+                  }
+                </th>
+              ))
+            }
+          </tr>
         </thead>
         <tbody>
-        {
-          viewData.map(item => (
-            <tr>
-              {
-                columns.map(({ id: columnId }) => (
-                  <td
-                    key={columnId}
-                  >
-                    { item[columnId] }
-                  </td>
-                ))
-              }
-            </tr>
-          ))
-        }
+          {
+            viewData.map(item => (
+              <tr>
+                {
+                  columns.map(({ id: columnId }) => (
+                    <td
+                      key={columnId}
+                    >
+                      { item[columnId] }
+                    </td>
+                  ))
+                }
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </>
