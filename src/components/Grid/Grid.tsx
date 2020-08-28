@@ -67,14 +67,14 @@ class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridS
         </div>
         <table className="table table-striped">
           <thead>
-          <tr>
-            {
-              columns.map(({ id, title }) => (
+            <tr>
+              {
+                columns.map(({ id, title }) => (
                   <th
                     key={id}
                     className="cursor-pointer"
                     onClick={() => {
-                      this.setOrder(id);
+                      this.setSort(id);
                     }}
                   >
                       {title}
@@ -89,26 +89,26 @@ class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridS
                         </span>
                       }
                   </th>
-              ))
-            }
-          </tr>
+                ))
+              }
+            </tr>
           </thead>
           <tbody>
-          {
-            viewData.map(item => (
+            {
+              viewData.map(item => (
                 <tr>
                   {
                     columns.map(({ id: columnId }) => (
-                        <td
-                          key={columnId}
-                        >
-                          { item[columnId] }
-                        </td>
+                      <td
+                        key={columnId}
+                      >
+                        { item[columnId] }
+                      </td>
                     ))
                   }
                 </tr>
-            ))
-          }
+              ))
+            }
           </tbody>
         </table>
       </>
@@ -131,7 +131,7 @@ class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridS
     }, this.generateViewData);
   }
 
-  private setOrder = (sortColumnId: ColumnId | null): void => {
+  private setSort = (sortColumnId: ColumnId | null): void => {
 
     this.setState({
       sortColumnId,
@@ -151,7 +151,7 @@ class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridS
           : SortDirection.ASC;
     }
 
-    return  SortDirection.ASC;
+    return SortDirection.ASC;
   }
 
   private generateViewData = (): void => {
