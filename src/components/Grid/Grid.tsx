@@ -50,7 +50,7 @@ const Grid = <TItem extends GridItemData>({
   });
 
   const columnStyle = useMemo<CSSProperties>(() => ({
-    width: `${100/columns.length}%`
+    width: `${100/columns.length}%`,
   }), [columns]);
 
   return (
