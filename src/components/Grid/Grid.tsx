@@ -1,4 +1,4 @@
-import React, {ReactElement, useCallback, useEffect, useState} from 'react';
+import React, {CSSProperties, ReactElement, useCallback, useEffect, useMemo, useState} from 'react';
 
 export interface GridItemData {
   [key: string]: string | number;
@@ -80,6 +80,10 @@ const Grid = <TItem extends GridItemData> ({
     sortColumnId,
   ]);
 
+  const columnStyle = useMemo<CSSProperties>(() => ({
+    width: `${100/columns.length}%`,
+  }), [columns]);
+
   return (
     <>
       <div className="input-group my-3">
@@ -102,6 +106,7 @@ const Grid = <TItem extends GridItemData> ({
                   onClick={() => {
                     setSort(id);
                   }}
+                  style={columnStyle}
                 >
                   {title}
                   {
