@@ -41,7 +41,7 @@ const Grid = <TItem extends GridItemData>({
 
   const {
     viewData,
-  } = useViewData({
+  } = useViewData<TItem>({
     data,
     filter,
     filterText,
@@ -71,6 +71,7 @@ const Grid = <TItem extends GridItemData>({
                   onClick={() => {
                     setSort(id);
                   }}
+                  style={{ width: `${100/columns.length}%`}}
                 >
                   {title}
                   {
