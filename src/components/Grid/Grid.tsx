@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, CSSProperties, useMemo} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -54,6 +54,10 @@ class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridS
       filterText,
     } = this.state;
 
+    const columnStyle: CSSProperties = {
+      width: `${100/columns.length}%`,
+    };
+
     return (
       <>
         <div className="input-group my-3">
@@ -76,6 +80,7 @@ class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridS
                     onClick={() => {
                       this.setSort(id);
                     }}
+                    style={columnStyle}
                   >
                       {title}
                       {
