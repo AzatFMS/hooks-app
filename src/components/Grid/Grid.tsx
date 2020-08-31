@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {CSSProperties, ReactElement, useMemo} from 'react';
 import useGridFilter from "./useGridFilter";
 import useGridSort from "./useGridSort";
 import useViewData from "./useViewData";
@@ -49,6 +49,10 @@ const Grid = <TItem extends GridItemData>({
     sortColumnId,
   });
 
+  const columnStyle = useMemo<CSSProperties>(() => ({
+    width: `${100/columns.length}%`
+  }), [columns]);
+
   return (
     <>
       <div className="input-group my-3">
@@ -71,7 +75,7 @@ const Grid = <TItem extends GridItemData>({
                   onClick={() => {
                     setSort(id);
                   }}
-                  style={{ width: `${100/columns.length}%`}}
+                  style={columnStyle}
                 >
                   {title}
                   {
