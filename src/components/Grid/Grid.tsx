@@ -1,4 +1,4 @@
-import React, {Component, CSSProperties, useMemo} from 'react';
+import React, {Component, CSSProperties} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
