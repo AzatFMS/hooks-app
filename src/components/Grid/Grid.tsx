@@ -101,7 +101,7 @@ class Grid<TItem extends GridItemData> extends PureComponent<GridProps<TItem>, G
           <tbody>
             {
               viewData.map(item => (
-                <tr>
+                <tr key={item.id}>
                   {
                     columns.map(({ id: columnId }) => (
                       <td
