@@ -1,4 +1,4 @@
-import React, {Component, CSSProperties} from 'react';
+import React, {CSSProperties, PureComponent} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -33,7 +33,7 @@ interface GridState {
   filterText?: string;
 }
 
-class Grid<TItem extends GridItemData> extends Component<GridProps<TItem>, GridState> {
+class Grid<TItem extends GridItemData> extends PureComponent<GridProps<TItem>, GridState> {
 
   state: GridState = {
     sortColumnId: null,
