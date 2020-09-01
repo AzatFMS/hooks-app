@@ -1,4 +1,12 @@
-import React, {CSSProperties, ReactElement, useCallback, useEffect, useMemo, useState} from 'react';
+import React, {
+  CSSProperties,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  memo,
+} from 'react';
 
 export interface GridItemData {
   [key: string]: string | number;
@@ -127,7 +135,7 @@ const Grid = <TItem extends GridItemData> ({
         <tbody>
           {
             viewData.map(item => (
-              <tr>
+              <tr key={item.id}>
                 {
                   columns.map(({ id: columnId }) => (
                     <td
@@ -146,4 +154,4 @@ const Grid = <TItem extends GridItemData> ({
   );
 }
 
-export default Grid;
+export default memo(Grid) as typeof Grid;
