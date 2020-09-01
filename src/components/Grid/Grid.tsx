@@ -1,4 +1,9 @@
-import React, {CSSProperties, ReactElement, useMemo} from 'react';
+import React, {
+  CSSProperties,
+  ReactElement,
+  useMemo,
+  memo,
+} from 'react';
 import useGridFilter from "./useGridFilter";
 import useGridSort from "./useGridSort";
 import useViewData from "./useViewData";
@@ -96,7 +101,7 @@ const Grid = <TItem extends GridItemData>({
         <tbody>
           {
             viewData.map(item => (
-              <tr>
+              <tr key={item.id}>
                 {
                   columns.map(({id: columnId}) => (
                     <td
@@ -115,4 +120,4 @@ const Grid = <TItem extends GridItemData>({
   );
 }
 
-export default Grid;
+export default memo(Grid) as typeof Grid;
